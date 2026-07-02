@@ -112,23 +112,6 @@ p {
 }
 
 /* -----------------------------------------------------------
-   Subtle geometric divider (understated Islamic-inspired motif)
-   ----------------------------------------------------------- */
-.pattern-divider {
-  width: 100%;
-  height: 24px;
-  margin: 0 auto;
-  background-image:
-    linear-gradient(45deg, var(--color-gold) 25%, transparent 25%, transparent 75%, var(--color-gold) 75%),
-    linear-gradient(45deg, var(--color-gold) 25%, transparent 25%, transparent 75%, var(--color-gold) 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 10px 10px;
-  opacity: 0.25;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-}
-
-/* -----------------------------------------------------------
    Buttons + links - subtle, consistent hover motion
    ----------------------------------------------------------- */
 .btn {
