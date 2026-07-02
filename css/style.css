@@ -24,6 +24,11 @@
   --radius-lg: 22px;
 
   --container-width: 1180px;
+
+  /* Shared timing so every hover/press feels like one system */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 200ms;
+  --t-modal: 380ms;
 }
 
 * {
@@ -57,7 +62,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 600;
   color: var(--color-plum-deep);
-  margin: 0 0 0.5em;
+  margin: 0 0 0.4em;
 }
 
 p {
@@ -79,7 +84,31 @@ p {
   text-transform: uppercase;
   color: var(--color-gold);
   font-weight: 600;
-  margin-bottom: 0.75em;
+  margin-bottom: 0.6em;
+}
+
+/* -----------------------------------------------------------
+   Scroll reveal (Intersection Observer driven, see js/main.js)
+   Transform + opacity only so it stays smooth on mobile.
+   ----------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* -----------------------------------------------------------
@@ -87,33 +116,27 @@ p {
    ----------------------------------------------------------- */
 .pattern-divider {
   width: 100%;
-  height: 28px;
+  height: 24px;
   margin: 0 auto;
   background-image:
     linear-gradient(45deg, var(--color-gold) 25%, transparent 25%, transparent 75%, var(--color-gold) 75%),
     linear-gradient(45deg, var(--color-gold) 25%, transparent 25%, transparent 75%, var(--color-gold) 75%);
-  background-size: 22px 22px;
-  background-position: 0 0, 11px 11px;
-  opacity: 0.35;
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.25;
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
-.pattern-divider--tight {
-  height: 14px;
-  background-size: 14px 14px;
-  background-position: 0 0, 7px 7px;
-}
-
 /* -----------------------------------------------------------
-   Buttons
+   Buttons + links - subtle, consistent hover motion
    ----------------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 32px;
+  padding: 15px 34px;
   border-radius: 999px;
   font-family: var(--font-body);
   font-weight: 600;
@@ -121,11 +144,15 @@ p {
   letter-spacing: 0.02em;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease, background var(--t-fast) ease, color var(--t-fast) ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.99);
 }
 
 .btn-primary {
@@ -148,17 +175,22 @@ p {
   background: rgba(248, 244, 236, 0.12);
 }
 
-.btn-dark {
-  background: var(--color-plum-deep);
-  color: var(--color-ivory);
-}
-
-.btn-dark:hover {
-  background: var(--color-burgundy);
-}
-
 .btn-block {
   width: 100%;
+}
+
+.link-more {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--color-burgundy);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-fast) ease, color var(--t-fast) ease, transform var(--t-fast) ease;
+}
+
+.link-more:hover {
+  border-color: currentColor;
+  transform: translateX(2px);
 }
 
 /* -----------------------------------------------------------
@@ -185,6 +217,11 @@ p {
   font-size: 1.5rem;
   color: var(--color-plum-deep);
   letter-spacing: 0.02em;
+  transition: opacity var(--t-fast) ease;
+}
+
+.brand:hover {
+  opacity: 0.75;
 }
 
 .brand span {
@@ -205,6 +242,7 @@ p {
   color: var(--color-ink);
   position: relative;
   padding-bottom: 4px;
+  transition: color var(--t-fast) ease;
 }
 
 .nav-links a::after {
@@ -215,7 +253,7 @@ p {
   bottom: 0;
   height: 2px;
   background: var(--color-gold);
-  transition: right 0.25s ease;
+  transition: right var(--t-fast) ease;
 }
 
 .nav-links a:hover::after,
@@ -245,81 +283,61 @@ p {
 }
 
 /* -----------------------------------------------------------
-   Hero
+   Hero - one image, one headline, one CTA
    ----------------------------------------------------------- */
 .hero {
   position: relative;
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
   color: var(--color-ivory);
-  background: linear-gradient(120deg, var(--color-plum) 0%, var(--color-burgundy) 100%);
   overflow: hidden;
 }
 
-.hero::before {
-  content: "";
+.hero-media {
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(circle at 15% 20%, rgba(196, 154, 88, 0.18), transparent 40%),
-    radial-gradient(circle at 85% 80%, rgba(196, 154, 88, 0.14), transparent 45%);
-  pointer-events: none;
 }
 
-.hero-inner {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: 48px;
-  padding: 96px 0 88px;
-}
-
-.hero h1 {
-  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
-  color: var(--color-ivory);
-  line-height: 1.15;
-}
-
-.hero .tagline {
-  font-size: 1.15rem;
-  color: var(--color-gold-light);
-  font-family: var(--font-heading);
-  font-style: italic;
-  margin-bottom: 0.9em;
-}
-
-.hero p.intro {
-  max-width: 46ch;
-  color: rgba(248, 244, 236, 0.85);
-  font-size: 1.02rem;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 16px;
-  margin-top: 28px;
-  flex-wrap: wrap;
-}
-
-.hero-image {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(196, 154, 88, 0.4);
-}
-
-.hero-image img {
+.hero-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 9 / 10;
+}
+
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(44, 12, 22, 0.5) 0%, rgba(63, 18, 32, 0.68) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  color: var(--color-ivory);
+  line-height: 1.1;
+  margin-bottom: 0.3em;
+}
+
+.hero .tagline {
+  font-size: 1.1rem;
+  color: rgba(248, 244, 236, 0.88);
+  margin-bottom: 2em;
 }
 
 /* -----------------------------------------------------------
    Section shell
    ----------------------------------------------------------- */
 .section {
-  padding: 80px 0;
+  padding: 96px 0;
 }
 
 .section-alt {
@@ -328,16 +346,11 @@ p {
 
 .section-header {
   text-align: center;
-  max-width: 640px;
-  margin: 0 auto 48px;
-}
-
-.section-header p {
-  color: var(--color-muted);
+  margin: 0 auto 44px;
 }
 
 /* -----------------------------------------------------------
-   Product grid + cards
+   Product grid + cards - image, name, price only
    ----------------------------------------------------------- */
 .product-grid {
   display: grid;
@@ -352,7 +365,7 @@ p {
   box-shadow: var(--shadow-card);
   cursor: pointer;
   border: 1px solid rgba(63, 18, 32, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
   text-align: left;
   padding: 0;
   font: inherit;
@@ -382,7 +395,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 400ms var(--ease-out);
 }
 
 .product-card:hover .product-card-media img {
@@ -390,49 +403,49 @@ p {
 }
 
 .product-card-body {
-  padding: 18px 20px 22px;
+  padding: 16px 18px 20px;
   flex: 1;
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .product-card-body h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.2em;
+  font-size: 1.08rem;
+  margin: 0;
 }
 
 .product-price {
   color: var(--color-burgundy);
   font-weight: 700;
-  font-size: 1.05rem;
-  margin-top: auto;
-}
-
-.product-card-cta {
-  margin-top: 10px;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+  white-space: nowrap;
 }
 
 /* -----------------------------------------------------------
-   Product modal
+   Product modal - grows from the clicked card (see js/modal.js)
    ----------------------------------------------------------- */
 .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(44, 12, 22, 0.6);
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--t-modal) var(--ease-out), visibility var(--t-modal);
 }
 
 .modal-overlay.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .modal {
@@ -446,6 +459,9 @@ p {
   grid-template-columns: 1fr 1fr;
   position: relative;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  transform-origin: center;
+  transition: transform var(--t-modal) var(--ease-out), opacity var(--t-modal) var(--ease-out);
+  will-change: transform, opacity;
 }
 
 .modal-close {
@@ -464,6 +480,12 @@ p {
   align-items: center;
   justify-content: center;
   z-index: 2;
+  transition: transform var(--t-fast) ease, background var(--t-fast) ease;
+}
+
+.modal-close:hover {
+  background: #fff;
+  transform: scale(1.08);
 }
 
 .modal-image {
@@ -504,14 +526,8 @@ p {
   margin-top: auto;
 }
 
-.modal-note {
-  font-size: 0.82rem;
-  color: var(--color-muted);
-  margin-top: 12px;
-}
-
 /* -----------------------------------------------------------
-   Cards - intro / about / contact
+   About / story
    ----------------------------------------------------------- */
 .two-col {
   display: grid;
@@ -533,26 +549,6 @@ p {
   width: 100%;
 }
 
-.value-list {
-  list-style: none;
-  padding: 0;
-  margin: 24px 0 0;
-  display: grid;
-  gap: 14px;
-}
-
-.value-list li {
-  display: flex;
-  gap: 12px;
-  align-items: baseline;
-}
-
-.value-list .mark {
-  color: var(--color-gold);
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-}
-
 /* -----------------------------------------------------------
    Contact page
    ----------------------------------------------------------- */
@@ -572,20 +568,20 @@ p {
 
 .contact-links {
   display: grid;
-  gap: 16px;
-  margin-top: 22px;
+  gap: 14px;
+  margin-top: 20px;
 }
 
 .contact-link {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 16px 18px;
+  padding: 14px 18px;
   border-radius: var(--radius-md);
   background: var(--color-ivory-soft);
   border: 1px solid rgba(63, 18, 32, 0.06);
   font-weight: 600;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background var(--t-fast) ease, transform var(--t-fast) ease;
 }
 
 .contact-link:hover {
@@ -606,21 +602,14 @@ p {
   font-size: 0.95rem;
 }
 
-.contact-link small {
-  display: block;
-  font-weight: 400;
-  color: var(--color-muted);
-  font-size: 0.82rem;
-}
-
 .form-field {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .form-field label {
   display: block;
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   margin-bottom: 6px;
   color: var(--color-plum-deep);
 }
@@ -635,6 +624,7 @@ p {
   font-size: 0.95rem;
   background: var(--color-ivory-soft);
   color: var(--color-ink);
+  transition: border-color var(--t-fast) ease, background var(--t-fast) ease;
 }
 
 .form-field input:focus,
@@ -642,12 +632,6 @@ p {
   outline: none;
   border-color: var(--color-gold);
   background: #fff;
-}
-
-.form-note {
-  font-size: 0.82rem;
-  color: var(--color-muted);
-  margin-top: 14px;
 }
 
 /* -----------------------------------------------------------
@@ -675,7 +659,7 @@ p {
 
 .footer-inner h4 {
   color: var(--color-gold-light);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 14px;
@@ -687,6 +671,10 @@ p {
   margin: 0;
   display: grid;
   gap: 10px;
+}
+
+.footer-inner a {
+  transition: color var(--t-fast) ease;
 }
 
 .footer-inner a:hover {
@@ -716,17 +704,6 @@ p {
    Responsive
    ========================================================= */
 @media (max-width: 900px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-    padding: 64px 0 56px;
-    text-align: left;
-  }
-
-  .hero-image {
-    order: -1;
-    max-width: 420px;
-  }
-
   .two-col,
   .contact-grid {
     grid-template-columns: 1fr;
@@ -742,6 +719,10 @@ p {
 }
 
 @media (max-width: 720px) {
+  .hero {
+    min-height: 80vh;
+  }
+
   .nav-links {
     position: absolute;
     top: 100%;
@@ -753,7 +734,7 @@ p {
     border-bottom: 1px solid rgba(63, 18, 32, 0.08);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 300ms var(--ease-out);
   }
 
   .nav-links.is-open {
@@ -791,15 +772,15 @@ p {
 }
 
 @media (max-width: 480px) {
-  .hero-cta {
-    flex-direction: column;
-  }
-
   .btn {
     width: 100%;
   }
 
   .contact-card {
     padding: 24px;
+  }
+
+  .section {
+    padding: 64px 0;
   }
 }

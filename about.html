@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About &amp; Contact - Ihsan Attire</title>
-  <meta name="description" content="The story behind Ihsan Attire and how to reach us via WhatsApp, Instagram or email." />
+  <meta name="description" content="The story behind Ihsan Attire and how to reach us." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,30 +30,15 @@
 
   <main>
     <!-- Brand story -->
-    <section class="section">
+    <section class="section reveal">
       <div class="container two-col">
         <div class="story-image">
-          <img src="images/about-portrait.jpg" alt="Ihsan Attire brand portrait" />
+          <img src="images/about-portrait.jpg" alt="Ihsan Attire" />
         </div>
         <div>
           <p class="eyebrow">Our Story</p>
           <h1>Made Slowly, Worn Proudly</h1>
-          <p>
-            Ihsan Attire began with a simple frustration: modest shawls that felt like an
-            afterthought - thin, shapeless, and rarely made with real care for how they'd be
-            worn day to day. We wanted something different.
-          </p>
-          <p>
-            "Ihsan" means to do things with excellence and beauty. That's the standard we hold
-            our fabrics, our colours, and our finishing to. Every shawl in our collection is
-            chosen for how it drapes, how it wears through a full day, and how it photographs in
-            both plum evening light and morning ivory.
-          </p>
-          <ul class="value-list">
-            <li><span class="mark">&#9670;</span> Small-batch fabrics, chosen by hand</li>
-            <li><span class="mark">&#9670;</span> A palette rooted in classic textile tradition</li>
-            <li><span class="mark">&#9670;</span> Designed to move easily from daily wear to occasion wear</li>
-          </ul>
+          <p>"Ihsan" means excellence and beauty. It's the standard behind every shawl we weave - chosen for how it drapes, wears, and lasts.</p>
         </div>
       </div>
     </section>
@@ -61,39 +46,28 @@
     <div class="pattern-divider"></div>
 
     <!-- Contact -->
-    <section class="section section-alt">
+    <section class="section section-alt reveal">
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">Get In Touch</p>
           <h2>Say Hello</h2>
-          <p>Questions about a shawl, sizing, or a custom order? Reach us however is easiest for you.</p>
         </div>
 
         <div class="contact-grid">
           <div class="contact-card">
             <h3>Direct Contact</h3>
-            <p>We typically reply within a day.</p>
             <div class="contact-links">
               <a class="contact-link" href="https://wa.me/10000000000" target="_blank" rel="noopener">
                 <span class="icon">W</span>
-                <span>
-                  WhatsApp
-                  <small>Order or ask a question directly</small>
-                </span>
+                <span>WhatsApp</span>
               </a>
               <a class="contact-link" href="https://instagram.com/ihsan.attire" target="_blank" rel="noopener">
                 <span class="icon">IG</span>
-                <span>
-                  @ihsan.attire
-                  <small>Follow along and DM us on Instagram</small>
-                </span>
+                <span>@ihsan.attire</span>
               </a>
               <a class="contact-link" href="mailto:hello@ihsanattire.com">
                 <span class="icon">@</span>
-                <span>
-                  hello@ihsanattire.com
-                  <small>For wholesale &amp; general enquiries</small>
-                </span>
+                <span>hello@ihsanattire.com</span>
               </a>
             </div>
           </div>
@@ -118,7 +92,6 @@
                 <textarea id="message" name="message" rows="4" required></textarea>
               </div>
               <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-              <p class="form-note">Prefer WhatsApp? Use the link on the left for a faster reply.</p>
             </form>
           </div>
         </div>
@@ -131,7 +104,7 @@
       <div class="footer-inner">
         <div>
           <p class="footer-brand">Ihsan Attire</p>
-          <p>Modest elegance, woven with care. A boutique shawl house rooted in classic textile craft.</p>
+          <p>Modest elegance, woven with care.</p>
         </div>
         <div>
           <h4>Explore</h4>
@@ -161,7 +134,7 @@
     // Placeholder submit handler until a real form backend is wired up.
     document.querySelector("[data-contact-form]").addEventListener("submit", function (event) {
       event.preventDefault();
-      alert("Thanks for reaching out! This form isn't connected to an inbox yet - please use WhatsApp or email for now.");
+      alert("Thanks! This form isn't connected yet - please use WhatsApp or email for now.");
       event.target.reset();
     });
   </script>
