@@ -1,25 +1,27 @@
 /* =========================================================
    Ihsan Attire - global styles
-   Palette: deep plum / burgundy + warm gold + ivory
+   Palette: cream + warm gold + deep green (Islamic-inspired)
    Headings: Playfair Display (serif) | Body: Inter (sans)
+   Arabic wordmark: Aref Ruqaa
    ========================================================= */
 
 :root {
-  --color-plum: #3f1220;
-  --color-plum-deep: #2c0c16;
-  --color-burgundy: #6a1f30;
-  --color-gold: #c49a58;
-  --color-gold-light: #dcc088;
-  --color-ivory: #f8f4ec;
-  --color-ivory-soft: #f1ebdd;
-  --color-ink: #2a1c1f;
-  --color-muted: #7a6a63;
+  --color-green-deepest: #15291f;
+  --color-green-deep: #1f3d2e;
+  --color-green: #35604a;
+  --color-gold: #c9a355;
+  --color-gold-light: #e0c184;
+  --color-cream: #faf6ec;
+  --color-cream-soft: #f2ead9;
+  --color-ink: #262420;
+  --color-muted: #7c7466;
 
   --font-heading: "Playfair Display", Georgia, serif;
   --font-body: "Inter", "Lato", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-arabic: "Aref Ruqaa", serif;
 
-  --shadow-soft: 0 10px 30px rgba(63, 18, 32, 0.12);
-  --shadow-card: 0 8px 24px rgba(63, 18, 32, 0.1);
+  --shadow-soft: 0 10px 30px rgba(31, 61, 46, 0.12);
+  --shadow-card: 0 8px 24px rgba(31, 61, 46, 0.1);
   --radius-md: 14px;
   --radius-lg: 22px;
 
@@ -43,7 +45,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--color-ink);
-  background: var(--color-ivory);
+  background: var(--color-cream);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -61,7 +63,7 @@ a {
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 600;
-  color: var(--color-plum-deep);
+  color: var(--color-green-deepest);
   margin: 0 0 0.4em;
 }
 
@@ -85,6 +87,31 @@ p {
   color: var(--color-gold);
   font-weight: 600;
   margin-bottom: 0.6em;
+}
+
+/* -----------------------------------------------------------
+   Islamic geometric accent - two overlapping squares (one
+   rotated 45deg) tile into an eight-point star lattice. Used
+   only as a faint texture or a thin framing strip, never as a
+   busy full-page tiling.
+   ----------------------------------------------------------- */
+.geo-pattern-gold {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%23e0c184' stroke-width='1'%3E%3Crect x='10' y='10' width='40' height='40'/%3E%3Crect x='10' y='10' width='40' height='40' transform='rotate(45 30 30)'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.geo-pattern-green {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%2335604a' stroke-width='1'%3E%3Crect x='10' y='10' width='40' height='40'/%3E%3Crect x='10' y='10' width='40' height='40' transform='rotate(45 30 30)'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Thin decorative divider strip between sections. */
+.geo-divider {
+  width: 100%;
+  height: 22px;
+  background-repeat: repeat;
+  background-size: 30px 30px;
+  opacity: 0.6;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 /* -----------------------------------------------------------
@@ -140,8 +167,8 @@ p {
 
 .btn-primary {
   background: var(--color-gold);
-  color: var(--color-plum-deep);
-  box-shadow: 0 8px 20px rgba(196, 154, 88, 0.35);
+  color: var(--color-green-deepest);
+  box-shadow: 0 8px 20px rgba(201, 163, 85, 0.35);
 }
 
 .btn-primary:hover {
@@ -150,12 +177,12 @@ p {
 
 .btn-outline {
   background: transparent;
-  color: var(--color-ivory);
-  border-color: rgba(248, 244, 236, 0.55);
+  color: var(--color-cream);
+  border-color: rgba(250, 246, 236, 0.55);
 }
 
 .btn-outline:hover {
-  background: rgba(248, 244, 236, 0.12);
+  background: rgba(250, 246, 236, 0.12);
 }
 
 .btn-block {
@@ -166,7 +193,7 @@ p {
   display: inline-block;
   font-weight: 600;
   font-size: 0.92rem;
-  color: var(--color-burgundy);
+  color: var(--color-green);
   border-bottom: 1px solid transparent;
   transition: border-color var(--t-fast) ease, color var(--t-fast) ease, transform var(--t-fast) ease;
 }
@@ -177,38 +204,79 @@ p {
 }
 
 /* -----------------------------------------------------------
+   Brand wordmark - English + Arabic pairing
+   Used in the header, hero, and footer. The Arabic line is the
+   only right-to-left content on the site.
+   ----------------------------------------------------------- */
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.1;
+  transition: opacity var(--t-fast) ease;
+}
+
+.brand:hover {
+  opacity: 0.8;
+}
+
+.brand-en {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-green-deepest);
+  letter-spacing: 0.02em;
+}
+
+.brand-en .brand-accent {
+  color: var(--color-gold);
+}
+
+.brand-ar {
+  font-family: var(--font-arabic);
+  font-size: 1rem;
+  color: var(--color-gold);
+}
+
+/* Dark-background variant, for use over the hero photo / footer */
+.brand--on-dark .brand-en {
+  color: var(--color-cream);
+}
+
+.brand--on-dark .brand-en .brand-accent {
+  color: var(--color-gold-light);
+}
+
+.brand--on-dark .brand-ar {
+  color: var(--color-gold-light);
+}
+
+/* Larger hero variant */
+.brand--hero .brand-en {
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  line-height: 1.1;
+}
+
+.brand--hero .brand-ar {
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+}
+
+/* -----------------------------------------------------------
    Header / Nav
    ----------------------------------------------------------- */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(248, 244, 236, 0.92);
+  background: rgba(250, 246, 236, 0.92);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(63, 18, 32, 0.08);
+  border-bottom: 1px solid rgba(31, 61, 46, 0.08);
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 0;
-}
-
-.brand {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  color: var(--color-plum-deep);
-  letter-spacing: 0.02em;
-  transition: opacity var(--t-fast) ease;
-}
-
-.brand:hover {
-  opacity: 0.75;
-}
-
-.brand span {
-  color: var(--color-gold);
+  padding: 16px 0;
 }
 
 .nav-links {
@@ -245,7 +313,7 @@ p {
 }
 
 .nav-links a.active {
-  color: var(--color-plum-deep);
+  color: var(--color-green-deepest);
   font-weight: 700;
 }
 
@@ -262,7 +330,7 @@ p {
 .nav-toggle span {
   width: 24px;
   height: 2px;
-  background: var(--color-plum-deep);
+  background: var(--color-green-deepest);
 }
 
 /* -----------------------------------------------------------
@@ -273,7 +341,7 @@ p {
   min-height: 86vh;
   display: flex;
   align-items: center;
-  color: var(--color-ivory);
+  color: var(--color-cream);
   overflow: hidden;
 }
 
@@ -292,7 +360,17 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(44, 12, 22, 0.5) 0%, rgba(63, 18, 32, 0.68) 100%);
+  background: linear-gradient(180deg, rgba(21, 41, 31, 0.55) 0%, rgba(31, 61, 46, 0.72) 100%);
+}
+
+.hero-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70'%3E%3Cg fill='none' stroke='%23e0c184' stroke-width='1'%3E%3Crect x='12' y='12' width='46' height='46'/%3E%3Crect x='12' y='12' width='46' height='46' transform='rotate(45 35 35)'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.08;
 }
 
 .hero-content {
@@ -303,16 +381,14 @@ p {
   text-align: center;
 }
 
-.hero h1 {
-  font-size: clamp(2.6rem, 5vw, 4rem);
-  color: var(--color-ivory);
-  line-height: 1.1;
-  margin-bottom: 0.3em;
+.hero-content .brand {
+  align-items: center;
+  margin-bottom: 0.6em;
 }
 
 .hero .tagline {
   font-size: 1.1rem;
-  color: rgba(248, 244, 236, 0.88);
+  color: rgba(250, 246, 236, 0.88);
   margin-bottom: 2em;
 }
 
@@ -324,7 +400,7 @@ p {
 }
 
 .section-alt {
-  background: var(--color-ivory-soft);
+  background: var(--color-cream-soft);
 }
 
 .section-header {
@@ -347,7 +423,7 @@ p {
   overflow: hidden;
   box-shadow: var(--shadow-card);
   cursor: pointer;
-  border: 1px solid rgba(63, 18, 32, 0.06);
+  border: 1px solid rgba(31, 61, 46, 0.06);
   transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
   text-align: left;
   padding: 0;
@@ -359,7 +435,7 @@ p {
 
 .product-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 36px rgba(63, 18, 32, 0.18);
+  box-shadow: 0 18px 36px rgba(31, 61, 46, 0.18);
 }
 
 .product-card:focus-visible {
@@ -371,7 +447,7 @@ p {
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: var(--color-ivory-soft);
+  background: var(--color-cream-soft);
 }
 
 .product-card-media img {
@@ -400,7 +476,7 @@ p {
 }
 
 .product-price {
-  color: var(--color-burgundy);
+  color: var(--color-green);
   font-weight: 700;
   font-size: 1rem;
   margin: 0;
@@ -413,7 +489,7 @@ p {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(44, 12, 22, 0.6);
+  background: rgba(21, 41, 31, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -432,7 +508,7 @@ p {
 }
 
 .modal {
-  background: var(--color-ivory);
+  background: var(--color-cream);
   border-radius: var(--radius-lg);
   max-width: 860px;
   width: 100%;
@@ -456,7 +532,7 @@ p {
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.85);
-  color: var(--color-plum-deep);
+  color: var(--color-green-deepest);
   font-size: 1.2rem;
   cursor: pointer;
   display: flex;
@@ -472,7 +548,7 @@ p {
 }
 
 .modal-image {
-  background: var(--color-ivory-soft);
+  background: var(--color-cream-soft);
   min-height: 260px;
 }
 
@@ -494,7 +570,7 @@ p {
 }
 
 .modal-price {
-  color: var(--color-burgundy);
+  color: var(--color-green);
   font-weight: 700;
   font-size: 1.2rem;
   margin-bottom: 18px;
@@ -520,10 +596,11 @@ p {
 }
 
 .story-image {
+  position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(196, 154, 88, 0.35);
+  border: 1px solid rgba(201, 163, 85, 0.35);
 }
 
 .story-image img {
@@ -546,7 +623,7 @@ p {
   border-radius: var(--radius-md);
   padding: 36px;
   box-shadow: var(--shadow-card);
-  border: 1px solid rgba(63, 18, 32, 0.06);
+  border: 1px solid rgba(31, 61, 46, 0.06);
 }
 
 .contact-links {
@@ -561,8 +638,8 @@ p {
   gap: 14px;
   padding: 14px 18px;
   border-radius: var(--radius-md);
-  background: var(--color-ivory-soft);
-  border: 1px solid rgba(63, 18, 32, 0.06);
+  background: var(--color-cream-soft);
+  border: 1px solid rgba(31, 61, 46, 0.06);
   font-weight: 600;
   transition: background var(--t-fast) ease, transform var(--t-fast) ease;
 }
@@ -576,7 +653,7 @@ p {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--color-plum-deep);
+  background: var(--color-green-deepest);
   color: var(--color-gold-light);
   display: flex;
   align-items: center;
@@ -594,7 +671,7 @@ p {
   font-weight: 600;
   font-size: 0.86rem;
   margin-bottom: 6px;
-  color: var(--color-plum-deep);
+  color: var(--color-green-deepest);
 }
 
 .form-field input,
@@ -602,10 +679,10 @@ p {
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid rgba(63, 18, 32, 0.18);
+  border: 1px solid rgba(31, 61, 46, 0.18);
   font-family: var(--font-body);
   font-size: 0.95rem;
-  background: var(--color-ivory-soft);
+  background: var(--color-cream-soft);
   color: var(--color-ink);
   transition: border-color var(--t-fast) ease, background var(--t-fast) ease;
 }
@@ -621,8 +698,8 @@ p {
    Footer
    ----------------------------------------------------------- */
 .site-footer {
-  background: var(--color-plum-deep);
-  color: rgba(248, 244, 236, 0.8);
+  background: var(--color-green-deepest);
+  color: rgba(250, 246, 236, 0.8);
   padding: 56px 0 28px;
 }
 
@@ -634,10 +711,7 @@ p {
 }
 
 .footer-brand {
-  font-family: var(--font-heading);
-  color: var(--color-ivory);
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .footer-inner h4 {
@@ -665,11 +739,11 @@ p {
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(248, 244, 236, 0.12);
+  border-top: 1px solid rgba(250, 246, 236, 0.12);
   padding-top: 22px;
   font-size: 0.82rem;
   text-align: center;
-  color: rgba(248, 244, 236, 0.55);
+  color: rgba(250, 246, 236, 0.55);
 }
 
 /* -----------------------------------------------------------
@@ -711,10 +785,10 @@ p {
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--color-ivory);
+    background: var(--color-cream);
     flex-direction: column;
     gap: 0;
-    border-bottom: 1px solid rgba(63, 18, 32, 0.08);
+    border-bottom: 1px solid rgba(31, 61, 46, 0.08);
     max-height: 0;
     overflow: hidden;
     transition: max-height 300ms var(--ease-out);
@@ -725,7 +799,7 @@ p {
   }
 
   .nav-links li {
-    border-top: 1px solid rgba(63, 18, 32, 0.06);
+    border-top: 1px solid rgba(31, 61, 46, 0.06);
   }
 
   .nav-links a {
