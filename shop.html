@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop - Ihsan Attire</title>
+  <meta name="description" content="Browse the full Ihsan Attire shawl collection - boutique modest wear in plum, burgundy and gold." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="brand">Ihsan <span>Attire</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="about.html">About &amp; Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section" style="padding-bottom: 24px;">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Shop</p>
+          <h1>The Full Collection</h1>
+          <p>Every shawl is made in small batches. Tap a piece to see the details and place your order.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="pattern-divider pattern-divider--tight"></div>
+
+    <section class="section" style="padding-top: 48px;">
+      <div class="container">
+        <div class="product-grid" data-shop-grid></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-brand">Ihsan Attire</p>
+          <p>Modest elegance, woven with care. A boutique shawl house rooted in classic textile craft.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About &amp; Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Reach Us</h4>
+          <ul>
+            <li><a href="https://wa.me/10000000000" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://instagram.com/ihsan.attire" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="mailto:hello@ihsanattire.com">hello@ihsanattire.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; <span data-current-year></span> Ihsan Attire. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product detail modal (shared markup, filled in by JS) -->
+  <div class="modal-overlay" data-modal-overlay>
+    <div class="modal" role="dialog" aria-modal="true" tabindex="-1">
+      <button class="modal-close" type="button" data-modal-close aria-label="Close">&times;</button>
+      <div class="modal-image">
+        <img data-modal-image src="" alt="" />
+      </div>
+      <div class="modal-body">
+        <h2 data-modal-name></h2>
+        <p class="modal-price" data-modal-price></p>
+        <p class="modal-description" data-modal-description></p>
+        <div class="modal-actions">
+          <a class="btn btn-primary btn-block" data-modal-buy href="#" target="_blank" rel="noopener">Buy Now via WhatsApp</a>
+          <p class="modal-note">You'll be taken to WhatsApp to complete your order with us directly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/shop.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
