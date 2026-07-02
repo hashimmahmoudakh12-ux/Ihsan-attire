@@ -15,7 +15,6 @@ function renderShopGrid() {
         <div class="product-card-body">
           <h3>${product.name}</h3>
           <p class="product-price">$${product.price}</p>
-          <span class="product-card-cta">View details</span>
         </div>
       </button>
     `
