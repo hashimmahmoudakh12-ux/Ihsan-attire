@@ -1,7 +1,7 @@
 /**
  * Product data for Ihsan Attire.
- * Swap `image` paths for real photos in /images (keep the same filenames
- * e.g. images/shawl-01.jpg to avoid touching this file).
+ * Swap `image` paths for new photos in /images (keep the same filenames
+ * e.g. images/product-01.jpg to avoid touching this file).
  *
  * whatsappNumber: replace with the business WhatsApp number in international
  * format, no "+" or spaces (e.g. "15551234567"). Used to build the Buy Now link.
@@ -14,76 +14,31 @@ const STORE_CONFIG = {
 
 const PRODUCTS = [
   {
-    id: "amara",
-    name: "Amara Shawl",
-    price: 68,
-    image: "images/shawl-01.jpg",
+    id: "zaytoon",
+    name: "Zaytoon Shawl",
+    price: 78,
+    image: "images/product-01.jpg",
     description:
-      "A featherlight modal-blend shawl in deep burgundy, finished with a hand-rolled edge. Drapes softly for everyday wear and dresses up easily for evenings out.",
-    featured: true,
-  },
-  {
-    id: "layla",
-    name: "Layla Wrap",
-    price: 72,
-    image: "images/shawl-02.jpg",
-    description:
-      "Woven in a rich plum tone with a subtle sheen, the Layla Wrap is generously sized for versatile styling - draped, pinned, or wrapped as a full-coverage layer.",
+      "An olive and gold woven shawl with a traditional calligraphic border, cut long enough to drape over the shoulder with ease. Rich, textured, and suited to evening wear or prayer.",
     featured: true,
   },
   {
     id: "noor",
-    name: "Noor Shawl",
-    price: 65,
-    image: "images/shawl-03.jpg",
+    name: "Noor Wrap",
+    price: 68,
+    image: "images/product-02.jpg",
     description:
-      "Ivory chiffon shawl with a fine gold-thread border inspired by traditional textile edging. Lightweight and breathable, ideal for warmer days.",
+      "A soft ivory wrap in a fine paisley weave, styled here as a hooded scarf. Lightweight and breathable, it layers easily over a jacket or worn on its own.",
     featured: true,
   },
   {
-    id: "zahra",
-    name: "Zahra Pashmina",
-    price: 85,
-    image: "images/shawl-04.jpg",
+    id: "amir",
+    name: "Amir Scarf",
+    price: 72,
+    image: "images/product-03.jpg",
     description:
-      "A luxe pashmina-style shawl in warm gold, woven with a soft brushed finish for extra warmth. A statement piece for special occasions.",
+      "A navy and gold striped scarf with a relaxed, generous drape. Versatile enough to dress up a plain thobe or add warmth to an everyday outfit.",
     featured: true,
-  },
-  {
-    id: "safiya",
-    name: "Safiya Shawl",
-    price: 70,
-    image: "images/shawl-05.jpg",
-    description:
-      "Wine-toned crepe shawl with a matte, structured drape that holds its shape beautifully whether pinned or worn loose.",
-    featured: false,
-  },
-  {
-    id: "meera",
-    name: "Meera Wrap",
-    price: 60,
-    image: "images/shawl-06.jpg",
-    description:
-      "Soft ivory jersey wrap designed for daily wear - breathable, easy to style, and gentle on sensitive skin.",
-    featured: false,
-  },
-  {
-    id: "yasmin",
-    name: "Yasmin Shawl",
-    price: 75,
-    image: "images/shawl-07.jpg",
-    description:
-      "Charcoal-plum shawl with a fine gold trim along the edge, giving a refined contrast for both casual and formal looks.",
-    featured: false,
-  },
-  {
-    id: "aaliyah",
-    name: "Aaliyah Pashmina",
-    price: 90,
-    image: "images/shawl-08.jpg",
-    description:
-      "Our signature ombre pashmina, transitioning from deep plum to warm gold. Woven from a premium wool-blend for a heavier, cold-weather drape.",
-    featured: false,
   },
 ];
 
