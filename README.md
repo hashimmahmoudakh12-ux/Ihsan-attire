@@ -22,12 +22,12 @@ js/main.js         Shared nav toggle + footer year
 images/           Product and section images
 ```
 
-## Swapping in real photos
+## Product photos
 
-Product images are placeholders generated for preview only. To use real
-photos, replace the files in `images/` with the same filenames
-(`shawl-01.jpg` through `shawl-08.jpg`, `hero-banner.jpg`, `about-portrait.jpg`).
-No code changes needed as long as filenames match `js/products.js`.
+The current catalog is 3 shawls, each using a real photo in `images/`
+(`product-01.jpg`, `product-02.jpg`, `product-03.jpg`). To swap a photo,
+replace the file with the same filename - no code changes needed. `hero-banner.jpg`
+and `about-portrait.jpg` are still placeholders; replace them the same way.
 
 To add/remove/edit products, edit the `PRODUCTS` array in `js/products.js`.
 
