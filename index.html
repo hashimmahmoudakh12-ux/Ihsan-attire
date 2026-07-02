@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ihsan Attire - Modest Elegance, Woven with Care</title>
+  <meta name="description" content="Ihsan Attire is a boutique shawl brand blending timeless craftsmanship with modern modest style." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="brand">Ihsan <span>Attire</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About &amp; Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Boutique Shawl House</p>
+          <h1>Ihsan Attire</h1>
+          <p class="tagline">Modest Elegance, Woven with Care</p>
+          <p class="intro">
+            We design shawls for women who want their modesty to feel like an art form -
+            considered fabrics, quiet detailing, and a palette drawn from old-world textile
+            traditions, made for everyday life.
+          </p>
+          <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop the Collection</a>
+            <a href="about.html" class="btn btn-outline">Our Story</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="images/hero-banner.jpg" alt="Ihsan Attire shawl collection" />
+        </div>
+      </div>
+    </section>
+
+    <div class="pattern-divider"></div>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Our Craft</p>
+          <h2>Textiles With Intention</h2>
+          <p>
+            Every Ihsan Attire shawl starts with a search for the right fabric hand - the way it
+            falls, breathes, and holds colour. We keep our collection small so each piece earns
+            its place in your wardrobe.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured shawls -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Featured</p>
+          <h2>This Season's Edit</h2>
+          <p>A first look at our most-loved shawls - tap any piece for details.</p>
+        </div>
+        <div class="product-grid" data-featured-grid></div>
+        <div class="text-center mt-lg">
+          <a href="shop.html" class="btn btn-dark">View Full Shop</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-brand">Ihsan Attire</p>
+          <p>Modest elegance, woven with care. A boutique shawl house rooted in classic textile craft.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About &amp; Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Reach Us</h4>
+          <ul>
+            <li><a href="https://wa.me/10000000000" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://instagram.com/ihsan.attire" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="mailto:hello@ihsanattire.com">hello@ihsanattire.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; <span data-current-year></span> Ihsan Attire. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product detail modal (shared markup, filled in by JS) -->
+  <div class="modal-overlay" data-modal-overlay>
+    <div class="modal" role="dialog" aria-modal="true" tabindex="-1">
+      <button class="modal-close" type="button" data-modal-close aria-label="Close">&times;</button>
+      <div class="modal-image">
+        <img data-modal-image src="" alt="" />
+      </div>
+      <div class="modal-body">
+        <h2 data-modal-name></h2>
+        <p class="modal-price" data-modal-price></p>
+        <p class="modal-description" data-modal-description></p>
+        <div class="modal-actions">
+          <a class="btn btn-primary btn-block" data-modal-buy href="#" target="_blank" rel="noopener">Buy Now via WhatsApp</a>
+          <p class="modal-note">You'll be taken to WhatsApp to complete your order with us directly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
